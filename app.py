@@ -13,6 +13,13 @@ import utils
 import drawbot
 import threading
 
+try:
+    # Include in try/except block if you're also targeting Mac/Linux
+    from PyQt5.QtWinExtras import QtWin
+    myappid = 'v2f.drawbot.1'
+    QtWin.setCurrentProcessExplicitAppUserModelID(myappid)
+except ImportError:
+    pass
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -341,6 +348,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "DrawBot"))
+        MainWindow.setWindowIcon(QtGui.QIcon('drawbot.ico'))
         self.title.setText(_translate("MainWindow", "DrawBot par @IV2FI"))
         self.urlTextBox.setPlaceholderText(_translate("MainWindow", "Url de l\'image à dessiner"))
         self.appLabel.setText(_translate("MainWindow", "Sur quoi vais-je dessiner ?"))
