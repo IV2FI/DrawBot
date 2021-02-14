@@ -15,8 +15,8 @@ def getPalette(app):
         app = "skribbl"
     else:
         app = "paint"
-    coordinatesFile = "colorPalettes\\" + app + "Coordinates.txt"
-    colorFiles = "colorPalettes\\" + app + "Colors.txt"
+    coordinatesFile = os.path.dirname(os.path.abspath(__file__)) + "\\colorPalettes\\" + app + "Coordinates.txt"
+    colorFiles = os.path.dirname(os.path.abspath(__file__)) + "\\colorPalettes\\" + app + "Colors.txt"
     coordinates = [tuple(int(i) for i in t.strip('()').split(',')) for t in open(coordinatesFile).read().split()]
     colors = [int(t) for t in open(colorFiles).read().split()]
     return [colors, coordinates]
