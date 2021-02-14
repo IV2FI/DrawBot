@@ -1,6 +1,6 @@
 # DrawBot
 
-You don't speak french? No worries, [english translation is over here.](#Drawbot-(in-english))
+You don't speak french? No worries, [english translation is over here.](#Drawbot-in-english)
 
 ## C'est quoi ?
 
