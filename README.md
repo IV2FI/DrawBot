@@ -19,6 +19,8 @@ Ici, le .zip : https://github.com/IV2FI/DrawBot/releases
 
 "Une image vaut mille mots", il paraît, alors voici une vidéo ou je t'explique tout ! Il y a une étape à faire pour configurer le bot **sans quoi il ne marchera probablement pas ! (ça prend 5 min max)** Donc regarde la vidéo !
 
+https://youtu.be/vMTNtDWsS4k
+
 # Drawbot (in english)
 
 DrawBot is a software made by [V2F](https://youtube.com/user/IV2FI), which will take control of your mouse to draw images on websites like Gartic Phone or Skribbl.io. It has a UI with quite a lot of options to make things really easy for you.
