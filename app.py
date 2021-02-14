@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from pynput.keyboard import Key, Listener
 import utils
 import drawbot
 import threading
@@ -22,6 +23,7 @@ except ImportError:
     pass
 
 class Ui_MainWindow(object):
+    
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(299, 613)
@@ -321,6 +323,7 @@ class Ui_MainWindow(object):
 
         # Custom values
         self.width = 0
+        self.height = 0
         self.startPosition = (0, 0)
         self.ignorePixels = False
         self.dither = False
@@ -329,6 +332,7 @@ class Ui_MainWindow(object):
         self.url = ""
         self.app = 0
         self.colors, self.coordinates = utils.getPalette(self.app)
+        self.drawingThread = None
 
         # Signals
         self.coordinateButton.clicked.connect(self.displayMouseCoordinates)
@@ -340,6 +344,11 @@ class Ui_MainWindow(object):
         self.appBox.currentIndexChanged.connect(self.setApp)
         self.urlTextBox.textChanged.connect(self.setUrl)
         self.drawButton.clicked.connect(self.draw)
+
+        # Collect keyboard events
+        listener = Listener(
+            on_press=self.on_press)
+        listener.start()
 
 
         self.retranslateUi(MainWindow)
@@ -362,11 +371,15 @@ class Ui_MainWindow(object):
         self.ditherBox.setText(_translate("MainWindow", "Dither"))
         self.coordinateButton.setText(_translate("MainWindow", "Obtenir les coordonnées de la souris (au clic suivant)"))
         self.MouseCoordinateLabel.setText(_translate("MainWindow", "Les coordonnées s\'afficheront ici"))
-        self.setBoundsButton.setText(_translate("MainWindow", "Définir la largeur du dessin"))
+        self.setBoundsButton.setText(_translate("MainWindow", "Définir la taille du dessin"))
         self.widthLabel.setText(_translate("MainWindow", "Actuellement : Aucun."))
         self.drawButton.setText(_translate("MainWindow", "Dessine !"))
         self.errorLabel.setText(_translate("MainWindow", ""))
 
+    def on_press(self, key):
+        if key == Key.esc and self.drawingThread != None:
+            self.exit_event.set()
+    
     def setApp(self, value):
         self.app = value
         self.colors, self.coordinates = utils.getPalette(self.app)
@@ -396,8 +409,9 @@ class Ui_MainWindow(object):
         self.MouseCoordinateLabel.adjustSize()
         bounds = utils.getBounds()
         self.width = abs(bounds[0][0] - bounds[1][0])
+        self.height = abs(bounds[0][1] - bounds[1][1])
         self.startPosition = (bounds[0][0], bounds[0][1])
-        self.widthLabel.setText(str(self.width) + ' px')
+        self.widthLabel.setText(str(self.width) + ' x ' + str(self.height) + ' px')
     
     def displayMouseCoordinates(self):
         t = threading.Thread(target=self.displayMouseCoordinatesWorker)
@@ -408,9 +422,10 @@ class Ui_MainWindow(object):
 
     def draw(self):
         if self.url != "" and self.width != 0:
+            self.exit_event = threading.Event()
             self.errorLabel.setText("")
-            t = threading.Thread(target=self.drawWorker)
-            t.start()
+            self.drawingThread = threading.Thread(target=self.drawWorker)
+            self.drawingThread.start()
         else:
             if self.url == "":
                 self.errorLabel.setText("J'ai besoin d'une URL")
@@ -418,8 +433,14 @@ class Ui_MainWindow(object):
                 self.errorLabel.setText("J'ai besoin de la largeur voulue")
     
     def drawWorker(self):
-        draw = drawbot.DrawBot(self.width, self.startPosition, self.ignorePixels, self.dither, self.speed, self.pixelInterval, self.url, self.colors, self.coordinates)
-        draw.draw()
+        try:
+            draw = drawbot.DrawBot(self.width, self.height, self.startPosition, self.ignorePixels, self.dither, self.speed, self.pixelInterval, self.url, self.colors, self.coordinates)
+            draw.draw(self.exit_event)
+        except Exception as error:
+            print(error)
+            self.errorLabel.setText("L'URL n'est pas bonne ou pas une image")
+            pass
+        self.drawingThread = None
 
 if __name__ == "__main__":
     import sys

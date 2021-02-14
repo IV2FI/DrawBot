@@ -1,6 +1,6 @@
 from PIL import Image, ImageFilter
 from pynput.mouse import Controller, Button
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, UnidentifiedImageError 
 import time
 import sys
 import requests
@@ -10,16 +10,17 @@ import math
 mouse = Controller()
 
 class DrawBot:
-    def __init__(self, desiredWidth, startPosition, ignoreSoloPixels, dither, speed, pixelInterval, url, colors, coordinates):
+    def __init__(self, desiredWidth, desiredHeight, startPosition, ignoreSoloPixels, dither, speed, pixelInterval, url, colors, coordinates):
         self.colorCoordinates = coordinates
         self.colors = colors
         self.speed = self.convertSpeed(speed)
+        self.speedByPixel = self.convertSpeedByPixel(speed)
         self.startPosition = startPosition
         self.setUpColorPalettes(colors)
-        self.setUpImageToDraw(url, dither, desiredWidth)
+        self.setUpImageToDraw(url, dither, desiredWidth, desiredHeight)
         self.pixelLinesToDraw = self.extractPixelLinesToDraw(pixelInterval, ignoreSoloPixels)
     
-    def setUpImageToDraw(self, url, dither, desiredWidth):
+    def setUpImageToDraw(self, url, dither, desiredWidth, desiredHeight):
         response = requests.get(url)
         self.img = Image.open(BytesIO(response.content))
         fillColor = (255,255,255)
@@ -29,10 +30,8 @@ class DrawBot:
             background.paste(self.img, self.img.split()[-1])
             self.img = background
         self.img = self.img.convert("RGB").quantize(palette=self.palette, dither=dither)
-        basewidth = desiredWidth
-        wpercent = (basewidth/float(self.img.size[0]))
-        hsize = int((float(self.img.size[1])*float(wpercent)))
-        self.img = self.img.resize((basewidth,hsize), Image.ANTIALIAS)
+        maxSize = (desiredWidth, desiredHeight)
+        self.img.thumbnail(maxSize, Image.ANTIALIAS)
         self.width, self.height = self.img.size
         self.img = self.img.convert("RGB")
 
@@ -103,34 +102,51 @@ class DrawBot:
             lineColor = None
         return [lines, nbLinesToDraw]
     
-    def draw(self):
+    def draw(self, exit_event):
         for key, value in self.pixelLinesToDraw.items():
             if key != (255,255,255) and key != (0,0,0):
                 self.changeColor(key[0], key[1], key[2])
                 for j in value:
+                    if exit_event.is_set():
+                        break
                     self.drawLine(j)
-            if self.speed == 0.01 or self.speed == 0.00001:
+            if self.speed == 0.1 or self.speed == 0.00001:
                 time.sleep(0.1)
         if (0,0,0) in self.pixelLinesToDraw:
             self.changeColor(0, 0, 0)
             for j in self.pixelLinesToDraw[(0,0,0)]:
                 for i in j:
+                    if exit_event.is_set():
+                        break
                     self.drawLine(j)
 
     def drawLine(self, coordinates):
         mouse.position = coordinates[0]
         mouse.press(Button.left)
         mouse.move(abs(coordinates[1][0] - coordinates[0][0]), abs(coordinates[1][1] - coordinates[0][1]))
-        time.sleep(self.speed)
+        if (abs(coordinates[1][0] - coordinates[0][0]) > 0 or abs(coordinates[1][1] - coordinates[0][1]) > 0):
+            time.sleep(self.speed)
+        else:
+            time.sleep(self.speedByPixel)
         mouse.release(Button.left)
 
     def convertSpeed(self, speed):
         if speed == 1:
-            return 0.01
+            return 0.1
         if speed == 2:
             return 0.00001
         if speed == 3:
             return 0.000000001
+        if speed == 4:
+            return 0.0000000000000001
+        
+    def convertSpeedByPixel(self, speed):
+        if speed == 1:
+            return 0.00001
+        if speed == 2:
+            return 0.000000001
+        if speed == 3:
+            return 0.0000000000000001
         if speed == 4:
             return 0.0000000000000001
 
