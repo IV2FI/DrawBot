@@ -35,4 +35,4 @@ Over here, the .zip file: https://github.com/IV2FI/DrawBot/releases
 
 ## How to install and use the bot?
 
-Watch that video and the bot will have no secrets for you: 
+Watch that video and the bot will have no secrets for you: https://youtu.be/bdCBftJV25s
