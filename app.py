@@ -430,7 +430,7 @@ class Ui_MainWindow(object):
             if self.url == "":
                 self.errorLabel.setText("J'ai besoin d'une URL")
             elif self.width == 0:
-                self.errorLabel.setText("J'ai besoin de la largeur voulue")
+                self.errorLabel.setText("J'ai besoin de la taille de dessin voulue")
     
     def drawWorker(self):
         try:
