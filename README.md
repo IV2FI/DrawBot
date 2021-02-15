@@ -19,6 +19,8 @@ Ici, le .zip : https://github.com/IV2FI/DrawBot/releases
 
 "Une image vaut mille mots", il paraît, alors voici une vidéo ou je t'explique tout ! Il y a une étape à faire pour configurer le bot **sans quoi il ne marchera probablement pas ! (ça prend 5 min max)** Donc regarde la vidéo !
 
+**/!\ J'AI OUBLIE DE LE PRECISER DANS LA VIDEO. UNE FOIS LE SET UP FINI, REDEMARRE LE LOGICIEL !**
+
 https://youtu.be/vMTNtDWsS4k
 
 # Drawbot (in english)
@@ -35,4 +37,8 @@ Over here, the .zip file: https://github.com/IV2FI/DrawBot/releases
 
 ## How to install and use the bot?
 
-Watch that video and the bot will have no secrets for you: https://youtu.be/bdCBftJV25s
+Watch that video and the bot will have no secrets for you: 
+
+**/!\ I FORGOT TO MENTION IT IN THE VIDEO, ONCE DONE WITH THE SET UP PART, RESTART THE SOFTWARE!**
+
+https://youtu.be/bdCBftJV25s
