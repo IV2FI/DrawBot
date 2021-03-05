@@ -1,6 +1,5 @@
-from PIL import Image, ImageFilter
 from pynput.mouse import Controller, Button
-from PIL import Image, ImageFilter, UnidentifiedImageError 
+from PIL import Image, ImageFilter, UnidentifiedImageError
 import time
 import sys
 import requests
