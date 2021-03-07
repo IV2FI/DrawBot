@@ -442,44 +442,38 @@ class Ui_MainWindow(object):
         y = firstCoordinates[1]
         tmpX = x
         coordinate = []
-        k = 0
         for line in range(6):
             for raw in range(3):
-                coordinate.append("(" + str(x) +"," +str(y)+") ")
-                k += 1
-                x += 45 #Decallage de 45 px entre chaques couleurs
+                coordinate.append("(" + str(x) + "," + str(y)+") ")
+                x += 45
             x = tmpX
-            y += 50 #Decallga de 50 px entre chaques couleurs
+            y += 50
         self.initFichierCoordinate(coordinate, "gartic")
 
-    def registerColorPosInFolderSkribbl(self, firstCoordinates):
+    def registerColorPosInSkribblFolder(self, firstCoordinates):
         x = firstCoordinates[0]
         y = firstCoordinates[1]
         tmpX = x
         coordinate = []
-        k = 0
         for line in range(2):
             for raw in range(11):
                 coordinate.append("(" + str(x) + "," + str(y)+") ")
-                k += 1
                 x += 26
             x = tmpX
             y += 25
         self.initFichierCoordinate(coordinate, "skribbl")
 
-    def registerColorPosINFolderPaint(self, firstCoordinates):
+    def registerColorPosInPaintFolder(self, firstCoordinates):
         x = firstCoordinates[0]
         y = firstCoordinates[1]
         tmpX = x
         coordinate = []
-        k = 0
         for line in range(2):
             for raw in range(10):
-                coordinate.append("(" + str(x) +"," +str(y)+") ")
-                k += 1
-                x += 22 #Decallage de 22px entre chaques couleurs
+                coordinate.append("(" + str(x) + "," + str(y)+") ")
+                x += 22
             x = tmpX
-            y += 22 #Decallaga de 22px entre chaques couleurs
+            y += 22
         self.initFichierCoordinate(coordinate, "paint")
 
     def draw(self):
