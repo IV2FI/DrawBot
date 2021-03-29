@@ -1,5 +1,4 @@
 from pynput.mouse import Controller, Button, Listener
-from pynput import keyboard
 from queue import Queue
 import os
 
