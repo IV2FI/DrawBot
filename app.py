@@ -25,6 +25,7 @@ except ImportError:
 class Ui_MainWindow(object):
     
     def setupUi(self, MainWindow):
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(299, 613)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
