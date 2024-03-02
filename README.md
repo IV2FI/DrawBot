@@ -1,6 +1,7 @@
 # DrawBot
 
 You don't speak french? No worries, [english translation is over here.](#Drawbot-in-english)
+Не беспокойтесь, [о Русских позаботились.](#Drawbot-in-russian)
 
 ## C'est quoi ?
 
@@ -42,3 +43,18 @@ Watch that video and the bot will have no secrets for you:
 **/!\ I FORGOT TO MENTION IT IN THE VIDEO, ONCE DONE WITH THE SET UP PART, RESTART THE SOFTWARE! Also, it does not seem to work very well with Paint.**
 
 https://youtu.be/bdCBftJV25s
+# Drawbot (in russian)
+
+DrawBot это программа сделанная [V2F](https://youtube.com/user/IV2FI), которая будет рисовать за вас в Gartic.io, Paint, Skribbl.io.
+
+![Гифка работы](https://user-images.githubusercontent.com/63878365/107878420-d7f0c480-6ed2-11eb-83de-f5bf8a276b50.gif)
+
+## Где скачать?
+
+.zip архив: https://github.com/IV2FI/DrawBot/releases
+
+**До скачивания посмотрите видео чтобы понимать как устроена данная программа**
+
+## Как установить бота?
+Посмотрите видео !не забудьте включить Яндекс Переводчик :)!:
+https://youtu.be/vMTNtDWsS4k
