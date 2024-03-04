@@ -2,7 +2,7 @@
 
 You don't speak french? No worries, [english translation is over here.](#Drawbot-in-english)
 Не беспокойтесь, [о Русских позаботились.](#Drawbot-in-russian)
-
+[中国人在这里](#Drawbot-in-chinese)
 ## C'est quoi ?
 
 DrawBot est un logiciel codé par [V2F](https://youtube.com/user/IV2FI) qui va prendre possession de ta souris pour dessiner à ta place sur des sites comme Gartic Phone ou Skribbl.io. Il est doté d'une UI avec pas mal d'options pour rendre le tout simple d'utilisation.
@@ -54,7 +54,19 @@ DrawBot это программа сделанная [V2F](https://youtube.com/u
 .zip архив: https://github.com/IV2FI/DrawBot/releases
 
 **До скачивания посмотрите видео чтобы понимать как устроена данная программа**
-
 ## Как установить бота?
 Посмотрите видео !не забудьте включить Яндекс Переводчик :)!:
 https://youtu.be/vMTNtDWsS4k
+
+# Drawbot (in chinese)
+DrawBot 是一个由 V2F 制作的程序，可以在 Gartic.io、Paint、Skribbl.io 中为您绘图。
+
+![Гифка работы](https://user-images.githubusercontent.com/63878365/107878420-d7f0c480-6ed2-11eb-83de-f5bf8a276b50.gif)
+## 哪里可以下载？
+
+.zip 存档：https://github.com/IV2FI/DrawBot/releases
+
+**下载之前，请观看视频以了解该程序的工作原理。**
+## 如何安装机器人？
+
+观看视频！别忘了打开 Yandex 翻译器:)！：https://youtu.be/vMTNtDWsS4k
